@@ -1,3 +1,5 @@
+import adafruit_ads1x15.ads1115 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
 import time
 import busio
 import board
@@ -23,7 +25,7 @@ def read_piezo():
 mpu6050 = mpu6050.mpu6050(0x68)
 
 def read_mpu6050():
-    return mpu6050.get_gyro_data()
+    return mpu6050.get_accel_data()
 
 # Set up AWS
 file = open('keys.txt', 'r')
@@ -48,7 +50,7 @@ class Record():
 
 # Set up PIR
 GPIO.setmode(GPIO.BCM)
-PIR_PIN = 27
+PIR_PIN = 23
 GPIO.setup(PIR_PIN, GPIO.IN)
 
 print('Startup, give it 3 seconds')
