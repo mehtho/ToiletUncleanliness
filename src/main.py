@@ -22,15 +22,8 @@ def run():
 		ads = ADS.ADS1115(i2c)
 		channel = AnalogIn(ads, ADS.P0)
 
-		def read_piezo():
-			return 32767 - channel.value
-
 		# Set up MPU6050
 		mpu6050 = mpu6050.mpu6050(0x68)
-
-		def read_mpu6050():
-			global mpu6050
-			return mpu6050.get_accel_data()
 
 		# Set up AWS
 		file = open('keys.txt', 'r')
@@ -64,9 +57,9 @@ def run():
 
 		while True:
 			rec = Record(
-				read_mpu6050(), 
+				mpu6050.get_accel_data(), 
 				GPIO.input(PIR_PIN), 
-				read_piezo())
+				32767 - channel.value)
 			
 			item = json.loads(json.dumps(rec.__dict__), parse_float=Decimal)
 			print(item)
