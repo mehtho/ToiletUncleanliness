@@ -4,11 +4,12 @@ import requests
 
 stop = False
 
+global beeping
+beeping = False
+
 fpurl = "https://g7p6olvo4b.execute-api.ap-southeast-1.amazonaws.com/prod/foot-pedal"
 
 def run():
-	beeping = False
-
 	try:
 		GPIO.setmode(GPIO.BCM)
 
