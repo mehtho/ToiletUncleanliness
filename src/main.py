@@ -29,6 +29,7 @@ def run():
 		mpu6050 = mpu6050.mpu6050(0x68)
 
 		def read_mpu6050():
+			global mpu6050
 			return mpu6050.get_accel_data()
 
 		# Set up AWS
