@@ -7,7 +7,7 @@ import boto3
 from decimal import Decimal
 import RPi.GPIO as GPIO
 import math
-import mpu6050
+import mpu6050 as mpu
 import json
 
 # Frequency
@@ -23,7 +23,7 @@ def run():
 		channel = AnalogIn(ads, ADS.P0)
 
 		# Set up MPU6050
-		mpu6050 = mpu6050.mpu6050(0x68)
+		mpu6050 = mpu.mpu6050(0x68)
 
 		# Set up AWS
 		file = open('keys.txt', 'r')
