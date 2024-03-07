@@ -4,7 +4,6 @@ import requests
 
 stop = False
 
-global beeping
 beeping = False
 
 fpurl = "https://g7p6olvo4b.execute-api.ap-southeast-1.amazonaws.com/prod/foot-pedal"
@@ -21,6 +20,8 @@ def run():
 
 		
 		def callback(channel):
+			global beeping
+			print("Ok!")
 			if GPIO.input(27) and not beeping:
 				beeping = True
 				requests.post(fpurl, json={})
