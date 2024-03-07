@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 import requests
+import boto3
+import math
 
 stop = False
 
@@ -18,6 +20,19 @@ def run():
 		GPIO.setup(17, GPIO.OUT)
 
 		GPIO.output(17, GPIO.HIGH)
+
+		# Set up AWS
+		file = open('keys.txt', 'r')
+		acki = file.readline().strip()
+		asak = file.readline().strip()
+
+		ddb = boto3.resource(
+			"dynamodb",
+			region_name="ap-southeast-1",
+			aws_access_key_id=acki,
+			aws_secret_access_key=asak
+			)
+		raw = ddb.Table("sink-motion-data")
 
 		
 		def callback(channel):
@@ -48,6 +63,7 @@ def run():
 			time.sleep(2)
 			if GPIO.input(22):
 				print("Motion")
+				raw.put_item(Item={"timestamp": math.floor(time.time() * 1000)})
 				pass
 
 

@@ -74,6 +74,7 @@ def run():
 			time.sleep(FREQ)
 
 	except KeyboardInterrupt:
+		global stop
 		stop = True
 		GPIO.cleanup()
 	except Exception as e:
