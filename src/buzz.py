@@ -21,12 +21,13 @@ def run():
 		
 		def callback(channel):
 			global beeping
-			print("Ok!")
+			print("Ok!", GPIO.input(27), beeping)
 			if GPIO.input(27) and not beeping:
 				beeping = True
 				requests.post(fpurl, json={})
 				GPIO.output(17, GPIO.LOW)
 				time.sleep(0.5)
+				GPIO.output(17, GPIO.HIGH)
 			else:
 				beeping = False
 				GPIO.output(17, GPIO.HIGH)
