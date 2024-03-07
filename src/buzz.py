@@ -24,10 +24,12 @@ def run():
 			print("Ok!", GPIO.input(27), beeping)
 			if GPIO.input(27) and not beeping:
 				beeping = True
-				requests.post(fpurl, json={})
+				
 				GPIO.output(17, GPIO.LOW)
-				time.sleep(0.5)
+				time.sleep(0.25)
 				GPIO.output(17, GPIO.HIGH)
+				
+				requests.post(fpurl, json={})
 			else:
 				beeping = False
 				GPIO.output(17, GPIO.HIGH)
