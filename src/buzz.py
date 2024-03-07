@@ -24,7 +24,7 @@ def run():
 			global beeping
 			global busy
 
-			print("Ok!", GPIO.input(27), beeping)
+			print("Ok!", GPIO.input(27), beeping, busy)
 			if GPIO.input(27) and not beeping:
 				beeping = True
 				
@@ -34,6 +34,7 @@ def run():
 
 				if not busy:
 					busy = True
+					print("POSTING")
 					requests.post(fpurl, json={})
 					busy = False
 			else:
