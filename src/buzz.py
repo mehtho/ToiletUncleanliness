@@ -3,11 +3,12 @@ import time
 import requests
 
 stop = False
-beeping = False
 
 fpurl = "https://g7p6olvo4b.execute-api.ap-southeast-1.amazonaws.com/prod/foot-pedal"
 
 def run():
+	beeping = False
+
 	try:
 		GPIO.setmode(GPIO.BCM)
 
@@ -23,6 +24,7 @@ def run():
 				beeping = True
 				requests.post(fpurl, json={})
 				GPIO.output(17, GPIO.LOW)
+				time.sleep(0.5)
 			else:
 				beeping = False
 				GPIO.output(17, GPIO.HIGH)
