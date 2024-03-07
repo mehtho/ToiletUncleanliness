@@ -3,6 +3,7 @@ import time
 import requests
 
 stop = False
+beeping = False
 
 fpurl = "https://g7p6olvo4b.execute-api.ap-southeast-1.amazonaws.com/prod/foot-pedal"
 
@@ -16,7 +17,7 @@ def run():
 
 		GPIO.output(17, GPIO.HIGH)
 
-		beeping = False
+		
 		def callback(channel):
 			if GPIO.input(27) and not beeping:
 				beeping = True
