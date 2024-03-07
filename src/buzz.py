@@ -51,6 +51,7 @@ def run():
 
 
 	except KeyboardInterrupt:
+		global stop
 		stop = True
 		GPIO.cleanup()
 	except Exception as e:
