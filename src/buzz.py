@@ -21,6 +21,10 @@ def run():
 
 		GPIO.output(17, GPIO.HIGH)
 
+		print("Starting up")
+		time.sleep(5)
+		print("Done")
+
 		# Set up AWS
 		file = open('keys.txt', 'r')
 		acki = file.readline().strip()
