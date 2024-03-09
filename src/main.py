@@ -61,6 +61,9 @@ def run():
 				GPIO.input(PIR_PIN), 
 				32767 - channel.value)
 			
+			if all(value == 0 for value in rec.gyr.values()):
+				raise Exception
+			
 			item = json.loads(json.dumps(rec.__dict__), parse_float=Decimal)
 			print(item)
 			raw.put_item(Item=item)
